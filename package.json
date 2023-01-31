@@ -1,0 +1,45 @@
+{
+  "name": "hapilabs-snap",
+  "version": "0.0.1",
+  "description": "HAPILABS Snap",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
+  },
+  "license": "(MIT-0 OR Apache-2.0)",
+  "main": "src/index.ts",
+  "files": [
+    "dist/",
+    "images/",
+    "snap.manifest.json"
+  ],
+  "scripts": {
+    "prebuild": "tsc",
+    "build": "mm-snap build",
+    "postbuild": "mm-snap manifest --fix",
+    "clean": "rimraf dist",
+    "serve": "mm-snap serve",
+    "start": "mm-snap watch"
+  },
+  "devDependencies": {
+    "@lavamoat/allow-scripts": "^2.0.3",
+    "@metamask/auto-changelog": "^2.6.0",
+    "@metamask/eslint-config": "^10.0.0",
+    "@metamask/eslint-config-jest": "^10.0.0",
+    "@metamask/eslint-config-nodejs": "^10.0.0",
+    "@metamask/eslint-config-typescript": "^10.0.0",
+    "@metamask/snap-types": "^0.22.0",
+    "@metamask/snaps-cli": "^0.22.0",
+    "@types/node": "^18.11.18",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
+  },
+  "packageManager": "yarn@3.2.1",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
