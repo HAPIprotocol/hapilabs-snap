@@ -1,13 +1,13 @@
 {
-  "version": "0.0.1",
-  "description": "HAPILABS Snap",
-  "proposedName": "HAPILABS",
+  "version": "1.0.0",
+  "description": "HAPI Snap",
+  "proposedName": "HAPI",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
+    "url": "https://github.com/HAPIprotocol/hapilabs-snap.git"
   },
   "source": {
-    "shasum": "rKg5FLQ+DFcvMD5Ao/kyaHjfCXRpIwdmk12zACZZbTI=",
+    "shasum": "DWUtmUxhineP/MvW7lW0yAdBJC+WASe421O1ZqFcsQk=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
@@ -18,9 +18,19 @@
     }
   },
   "initialPermissions": {
-    "snap_confirm": {},
     "endowment:network-access": {},
-    "endowment:transaction-insight": {}
+    "endowment:lifecycle-hooks": {},
+    "endowment:transaction-insight": {
+      "allowTransactionOrigin": true
+    },
+    "endowment:ethereum-provider": {},
+    "snap_notify": {},
+    "snap_dialog": {},
+    "snap_manageState": {},
+    "endowment:rpc": {
+      "dapps": true,
+      "snaps": false
+    }
   },
   "manifestVersion": "0.1"
 }
