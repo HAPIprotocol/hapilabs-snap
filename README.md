@@ -1,12 +1,7 @@
-# TypeScript Example Snap
+# HAPI Snap
 
-This snap demonstrates how to develop a snap with TypeScript. It is a simple
-snap that displays a confirmation dialog when the `hello` JSON-RPC method is
-called.
+This is a simple MetaMask Snap that returns security information about receiver from HAPLABS database and HAPI Protocol.
 
-## Testing
+## More info
 
-The snap comes with some basic tests, to demonstrate how to write tests for
-snaps. To test the snap, run `yarn test` in this directory. This will use
-[`@metamask/snaps-jest`](https://github.com/MetaMask/snaps/tree/main/packages/snaps-jest)
-to run the tests in `src/index.test.ts`.
+MetaMask will automatically fetch the Snap from the npm registry.

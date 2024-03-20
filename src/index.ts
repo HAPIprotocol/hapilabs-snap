@@ -1,5 +1,5 @@
 import type { OnInstallHandler, OnTransactionHandler } from '@metamask/snaps-sdk';
-import { copyable, divider, heading, panel, text } from '@metamask/snaps-sdk';
+import { copyable, divider, heading, panel, text, row } from '@metamask/snaps-sdk';
 
 export const onInstall: OnInstallHandler = async () => {
   await snap.request({
@@ -7,10 +7,8 @@ export const onInstall: OnInstallHandler = async () => {
     params: {
       type: 'alert',
       content: panel([
-        heading('Thank you for installing HAPI Snap'),
-        text(
-          'To get more information, visit [snap.hapi.one](https://snap.hapi.one).',
-        ),
+        heading('Thank you for installing HAPI'),
+        text('To get more information, visit [snap.hapi.one](https://snap.hapi.one)')
       ]),
     },
   });
@@ -37,7 +35,7 @@ export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
             type: 'alert',
             content: panel([
               text('API Key stored successfully'),
-              text(`**HAPI** has successfully stored a valid api key in your local metamask storage`)
+              text('**HAPI** has successfully stored a valid API key in your local MetaMask storage')
             ]),
           }
         })
@@ -62,8 +60,7 @@ export const onTransaction: OnTransactionHandler = async ({
     return {
       content: panel([
         heading('Add Api Key'),
-        text('Please Visit https://snap.hapi.one to get api key'),
-        copyable('https://snap.hapi.one')
+	text('Please Visit [snap.hapi.one](https://snap.hapi.one) to get an API key')
       ])}
   }
 
@@ -78,37 +75,36 @@ export const onTransaction: OnTransactionHandler = async ({
   let arr = [];
 
   if (mydata.status == "ok"){
-     arr = [
+    arr = [
 	heading('HAPI Risk Score'),
-	divider(),
-	text('Score: **'+mydata.data.risk.toString()+mydata.data.emoji.toString()+'**'),
-	text('Category: **'+mydata.data.category.toString()+'**'),
-	text('**'+mydata.data.riskDescriptionHeader.toString()+'** '+mydata.data.riskDescription.toString()),
-	text('*To view a detailed breakdown:*'),
-	copyable('https://terminal.hapilabs.one/'),
-	divider()
+        divider(),
+        row('Score:', text(`**${mydata.data.risk.toString()} ${mydata.data.emoji.toString()}**`)),
+        row('Category:', text(`**${mydata.data.category.toString()}**`)),
+        text(`**${mydata.data.riskDescriptionHeader.toString()}**`), 
+	text(`${mydata.data.riskDescription.toString()}`),
+        text(`*To view a detailed breakdown: [terminal.hapi.one](https://terminal.hapi.one/)*`),
+        divider()
     ];
     if(mydata.data.scamfari == 1){
-    arr.push(text('If you think that the generated Risk Score is incorrect, please make sure to report it to us for a reward:'));
-    arr.push(copyable('https://scamfari.com'));
-    arr.push(divider());
+        arr.push(text('If you think that the generated Risk Score is incorrect, please make sure to report it to us for a reward:'));
+        arr.push(text('[scamfari.com](https://scamfari.com)'));
+        arr.push(divider());
     }
     if(mydata.data.tokenSecurity.length!=0){
-    arr.push(heading('Contract Issues'));
-    arr.push(divider());
-    for (const issue of mydata.data.tokenSecurity) {
-        arr.push(text('▪️'+issue));
-    }
-    arr.push(divider());
+        arr.push(heading('Contract Issues'));
+        arr.push(divider());
+        for (const issue of mydata.data.tokenSecurity) {
+            arr.push(text(`▪️ ${issue.toString()}`));
+        }
+        arr.push(divider());
     }
     arr.push(heading('Your HAPI ID'));
     arr.push(divider());
-    arr.push(text('Validated: **'+mydata.data.hapiIdValid.toString()+'**'));
-    arr.push(text('Trust Score: **'+mydata.data.hapiIdScore.toString()+'**'));
+    arr.push(row('Validated:', text(`**${mydata.data.hapiIdValid.toString()}**`)));
+    arr.push(row('Trust Score:', text(`**${mydata.data.hapiIdScore.toString()}**`)));
     arr.push(text('*To get more information about HAPI ID, please visit*'));
-    arr.push(copyable('https://hapi.one/hapi-id'));
+    arr.push(text('[hapi.one/hapi-id](https://hapi.one/hapi-id)'));
     arr.push(divider());
-
 
     arr.push(text('*Powered by HAPI Labs*'));
     arr.push(text('*This score is based on the proprietary algorithms of the HAPI Labs team and private and public malicious data repositories including HAPI Labs own data*'));
@@ -117,18 +113,17 @@ export const onTransaction: OnTransactionHandler = async ({
     };
 
   } else if(mydata.status =='error'){
-    arr.push(heading("Error")); 
-    arr.push(text(mydata.description.toString())); 
-    return {
-    content: panel(arr)
-    };
+	arr.push(heading("Error")); 
+	arr.push(text(`${mydata.description.toString()}`)); 
+	return {
+	    content: panel(arr)
+	};
   } else if(mydata.status =='invalidAPI'){
     return {
       type: 'alert',
       content: panel([
-        heading('Invallid API Key'),
-        text('Please Visit https://snap.hapi.one to get api key'),
-        copyable('https://snap.hapi.one')
+        heading('Invalid API Key'),
+	text('Please Visit [snap.hapi.one](https://snap.hapi.one) to get an API key')
       ])}
   } else {
     arr.push(heading("Unknown Error")); 
