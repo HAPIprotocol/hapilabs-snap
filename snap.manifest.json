@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "HAPI Snap",
   "proposedName": "HAPI",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/HAPIprotocol/hapilabs-snap.git"
   },
   "source": {
-    "shasum": "Axq5xueODOTFxOtv7a0Vfuu+20tFeqF/qzeONJ4L8Q4=",
+    "shasum": "84epmblZfaiYOhWLvIClfovtKJ3giY/DddsaEsDxP1k=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
